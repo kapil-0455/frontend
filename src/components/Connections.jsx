@@ -38,14 +38,14 @@ const Connections = () => {
         const { _id, firstName , lastName , photoUrl , age , gender, description } = connection;
 
         return (
-            <div key={_id} className='flex m-4 p-4 rounded-lg bg-base-300 w-full w-1/2 items-center shadow-xl'>
+            <div key={_id} className='flex m-4 p-4 rounded-lg bg-base-300 w-[90%] max-w-xl items-center shadow-xl'>
               <div>
                 <img src={photoUrl} className='w-24 h-24 rounded-full border-2 border-primary' alt="photo" />
               </div>
               <div className='flex-1 text-center'>
                 <h2 className='font-bold text-2xl'>{firstName + " " + lastName}</h2>
-               {age && gender && <p className="text-gray-400">{age + ", " + gender}</p> } 
-                <p className="mt-2">{description}</p>
+                {(age || gender) && <p className="text-gray-400 font-semibold">{[age, gender].filter(Boolean).join(", ")}</p>}
+                <p className="mt-2 line-clamp-3 text-sm" title={description}>{description}</p>
               </div>
             </div>
         );
