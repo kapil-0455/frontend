@@ -25,25 +25,35 @@ const Feed = () => {
     getFeed();
   }, []);
 
-  if (!feed)
+  if (!feed || feed.length <= 0)
     return (
-      <div className="flex justify-center my-10">
-        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 drop-shadow-sm">
-          No New Users Found
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+        <div className="bg-primary/10 p-8 rounded-full mb-6 animate-float">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <h1 className="text-4xl font-extrabold gradient-text mb-4">
+          All Caught Up!
         </h1>
-      </div>
-    );
-  if (feed.length <= 0)
-    return (
-      <div className="flex justify-center my-10">
-        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 drop-shadow-sm">
-          No Users Found!
-        </h1>
+        <p className="text-lg opacity-60 max-w-md">
+          You've seen everyone in your area. Check back later for new developers to connect with!
+        </p>
+        <button 
+          className="btn btn-primary premium-btn mt-8"
+          onClick={() => window.location.reload()}
+        >
+          Refresh Feed
+        </button>
       </div>
     );
 
   return (
-    <div className="flex justify-center my-10">
+    <div className="flex flex-col items-center justify-center py-12 px-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="mb-8 text-center">
+        <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Discovery</h2>
+        <h1 className="text-3xl font-bold">Find Your Next Partner</h1>
+      </div>
       <UserCard user={feed[0]} />
     </div>
   );

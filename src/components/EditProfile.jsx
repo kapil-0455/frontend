@@ -36,90 +36,123 @@ const EditProfile = ({user}) => {
             setError(error.response?.data || "Something went wrong")
         }
     }
+
   return (
-
-<div>
-    <div className='flex justify-center my-10'>
-        <div className='flex justify-center mx-10'>
-            <div className="card bg-base-300 w-full max-w-lg shadow-xl">
-                <div className="card-body p-6">
-                <h2 className="card-title justify-center mb-2">Edit Profile</h2>          
-                {error && <p className='text-red-500 text-center text-sm'>{error}</p>}          
-                
-                <div className="grid grid-cols-2 gap-4">
-                    <label className="form-control w-full">
-                        <div className="label py-1">
-                            <span className="label-text text-sm">First Name</span>
-                        </div>
-                        <input type="text" value={firstName} className="input input-bordered input-sm w-full" 
-                            onChange={(e) => setFirstName(e.target.value)}
-                        />
-                    </label>
-
-                    <label className="form-control w-full">
-                        <div className="label py-1">
-                            <span className="label-text text-sm">Last Name</span>
-                        </div>
-                        <input type="text" value={lastName} className="input input-bordered input-sm w-full" 
-                            onChange={(e) => setLastName(e.target.value)}
-                        />
-                    </label>
-
-                    <label className="form-control w-full">
-                        <div className="label py-1">
-                            <span className="label-text text-sm">Age</span>
-                        </div>
-                        <input type="number" value={age} className="input input-bordered input-sm w-full" 
-                            onChange={(e) => setAge(e.target.value)}
-                        />
-                    </label>
-
-                    <label className="form-control w-full">
-                        <div className="label py-1">
-                            <span className="label-text text-sm">Gender</span>
-                        </div>
-                        <input type="text" value={gender} className="input input-bordered input-sm w-full" 
-                            onChange={(e) => setGender(e.target.value)}
-                        />
-                    </label>
+    <>
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-12">
+          <div className="card glass-card w-full max-w-lg animate-in fade-in slide-in-from-left-4 duration-700">
+            <div className="card-body p-8">
+              <h2 className="text-3xl font-bold gradient-text text-center mb-6">Edit Profile</h2>
+              
+              {error && (
+                <div className="alert alert-error py-2 px-4 mb-6 text-sm">
+                  <span>{error}</span>
+                </div>
+              )}
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold opacity-70">First Name</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    value={firstName} 
+                    className="input input-bordered premium-input bg-base-200/50" 
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
                 </div>
 
-                <label className="form-control w-full mt-2">
-                    <div className="label py-1">
-                        <span className="label-text text-sm">Photo URL</span>
-                    </div>
-                    <input type="text" value={photoUrl} className="input input-bordered input-sm w-full" 
-                        onChange={(e) => setPhotoUrl(e.target.value)}
-                    />
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold opacity-70">Last Name</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    value={lastName} 
+                    className="input input-bordered premium-input bg-base-200/50" 
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold opacity-70">Age</span>
+                  </label>
+                  <input 
+                    type="number" 
+                    value={age} 
+                    className="input input-bordered premium-input bg-base-200/50" 
+                    onChange={(e) => setAge(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold opacity-70">Gender</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    value={gender} 
+                    className="input input-bordered premium-input bg-base-200/50" 
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="form-control mt-4">
+                <label className="label">
+                  <span className="label-text font-semibold opacity-70">Photo URL</span>
                 </label>
+                <input 
+                  type="text" 
+                  value={photoUrl} 
+                  className="input input-bordered premium-input bg-base-200/50" 
+                  onChange={(e) => setPhotoUrl(e.target.value)}
+                />
+              </div>
 
-                <label className="form-control w-full mt-2">
-                    <div className="label py-1">
-                        <span className="label-text text-sm">About</span>
-                    </div>
-                    <textarea value={description} className="textarea textarea-bordered textarea-sm w-full leading-tight" rows="2"
-                        onChange={(e) => setDescription(e.target.value)}
-                    ></textarea>
+              <div className="form-control mt-4">
+                <label className="label">
+                  <span className="label-text font-semibold opacity-70">About</span>
                 </label>
+                <textarea 
+                  value={description} 
+                  className="textarea textarea-bordered premium-input bg-base-200/50 h-24"
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
+              </div>
 
-                <div className="card-actions justify-center mt-5">
-                    <button className="btn btn-primary btn-sm w-full" onClick={saveProfile}>Save Profile</button>
-                </div>
-                </div>
+              <div className="card-actions mt-8">
+                <button 
+                  className="btn btn-primary premium-btn w-full text-lg font-bold" 
+                  onClick={saveProfile}
+                >
+                  Save Changes
+                </button>
+              </div>
             </div>
-        </div>
-        <UserCard user={{firstName , lastName , photoUrl , age , gender, description }} hideButtons={true}></UserCard>
-    </div>
-    {showToast && <div className="toast toast-top toast-center">
-        <div className="alert alert-success">
-            <span>Profile saved successfully</span>
-        </div>
-    </div>
-    }
+          </div>
 
-</div>
-    
-  )
-}
+          <div className="animate-in fade-in slide-in-from-right-4 duration-700">
+            <div className="mb-4 text-center">
+              <span className="badge badge-primary badge-outline font-bold">Preview</span>
+            </div>
+            <UserCard user={{firstName, lastName, photoUrl, age, gender, description}} hideButtons={true} />
+          </div>
+        </div>
+      </div>
+      {showToast && (
+        <div className="toast toast-top toast-center z-50">
+          <div className="alert alert-success shadow-lg border-none bg-success text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Profile saved successfully!</span>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default EditProfile
