@@ -9,10 +9,10 @@ const Requests = () => {
     const dispatch = useDispatch();
     const requests = useSelector((state) => state.requests)
 
-    const reviewRequest = async(status , _id)=>{
+    const reviewRequest = async(status , requestId)=>{
         try {
-            const res = await axios.post(BASE_URL + "/request/review" + '/'+ status + '/' + _id, {} , {withCredentials : true});
-            dispatch(removeRequest(_id));
+            const res = await axios.post(BASE_URL + "/request/review" + '/'+ status + '/' + requestId, {} , {withCredentials : true});
+            dispatch(removeRequest(requestId));
         } catch (err) {
             console.error("Error Reviewing Request", err)
         }
@@ -60,10 +60,10 @@ const Requests = () => {
         <div className="w-full max-w-2xl space-y-4">
           {requests.map((request) => {
             if (!request) return null;
-            const { _id, firstName, lastName, photoUrl, age, gender, description } = request;
+            const { requestId, firstName, lastName, photoUrl, age, gender, description } = request;
 
             return (
-              <div key={_id} className="glass-card p-6 rounded-2xl flex flex-col sm:flex-row items-center gap-6 transition-all duration-300 hover:scale-[1.01]">
+              <div key={requestId} className="glass-card p-6 rounded-2xl flex flex-col sm:flex-row items-center gap-6 transition-all duration-300 hover:scale-[1.01]">
                 <div className="relative">
                   <img src={photoUrl} className="w-24 h-24 rounded-full object-cover ring-4 ring-primary/20 shadow-lg" alt={firstName} />
                   <div className="absolute -bottom-1 -right-1 bg-primary w-6 h-6 rounded-full border-4 border-base-100"></div>
@@ -81,13 +81,13 @@ const Requests = () => {
                 <div className="flex gap-3 mt-4 sm:mt-0">
                   <button 
                     className="btn btn-primary premium-btn btn-sm" 
-                    onClick={() => reviewRequest("accepted", _id)}
+                    onClick={() => reviewRequest("accepted", requestId)}
                   >
                     Accept
                   </button>
                   <button 
                     className="btn btn-outline btn-error premium-btn btn-sm" 
-                    onClick={() => reviewRequest("rejected", _id)}
+                    onClick={() => reviewRequest("rejected", requestId)}
                   >
                     Decline
                   </button>
