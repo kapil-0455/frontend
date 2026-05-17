@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
+
 const Preminum = () => {
+
+  const [isUserPremium, setIsUserPremium] = useState(false) ;
+  useEffect( () => {
+      verifyPremiumUser()
+    },[])
+
+    const verifyPremiumUser = async () =>{
+        try {
+            const res = await axios.get(BASE_URL + "/premium/verify" , {withCredentials:true} );
+            if(res.data.isPremium){
+                setIsUserPremium(true);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
   const handleBuyClick = async (type) => {
     const order = await axios.post(
       BASE_URL + "/payment/create",
       { memberShipType: type },
       { withCredentials: true },
     );
+
+    
 
     const options = {
       key: order.data.keyId,
@@ -24,12 +45,22 @@ const Preminum = () => {
       theme: {
         color: "#1e293b",
       },
+      handler : async function(response) {
+          await verifyPremiumUser();
+      }
     };
     const rzp = new Razorpay(options);
     rzp.open();
   };
 
-  return (
+  return isUserPremium ? (
+    <div>
+      <h1 className="text-5xl font-black mb-6 leading-tight">
+          You are a Premium User
+        </h1>
+    </div>
+  ) : 
+  (
     <div className="min-h-screen py-20 px-4 flex flex-col items-center">
       <div className="text-center mb-16 max-w-2xl">
         <h1 className="text-5xl font-black mb-6 leading-tight">
