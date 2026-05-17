@@ -28,6 +28,14 @@ const NavBar = () => {
       </div>
       {user && (
         <div className="flex-none gap-4 items-center">
+          <div className="hidden lg:flex items-center gap-6 mr-4">
+            <Link to="/" className="text-sm font-semibold hover:text-primary transition-colors">Feed</Link>
+            <Link to="/connections" className="text-sm font-semibold hover:text-primary transition-colors">Connections</Link>
+            <Link to="/requests" className="text-sm font-semibold hover:text-primary transition-colors">Requests</Link>
+          </div>
+          <Link to="/premium" className="hidden md:flex btn btn-sm btn-outline btn-secondary border-2 hover:bg-secondary hover:text-white rounded-full px-6 premium-btn mr-2">
+            Go Premium
+          </Link>
           <div className="hidden md:block text-sm font-medium opacity-80">
             Welcome, <span className="text-primary font-semibold">{user.firstName}</span>
           </div>
@@ -47,27 +55,35 @@ const NavBar = () => {
             >
               <li className="mb-1">
                 <Link to="/profile" className="flex items-center gap-2 p-2 hover:bg-primary/20 rounded-xl transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                   </svg>
-                  Profile
-                  <span className="badge badge-secondary badge-sm">New</span>
+                  <span className="font-medium">Profile</span>
                 </Link>
               </li>
               <li className="mb-1">
                 <Link to="/connections" className="flex items-center gap-2 p-2 hover:bg-primary/20 rounded-xl transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3.005 3.005 0 013.75-2.906z" />
                   </svg>
-                  Connections
+                  <span className="font-medium">Connections</span>
                 </Link>
               </li>
               <li className="mb-1">
                 <Link to="/requests" className="flex items-center gap-2 p-2 hover:bg-primary/20 rounded-xl transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
                   </svg>
-                  Requests
+                  <span className="font-medium">Requests</span>
+                </Link>
+              </li>
+              <li className="mb-1">
+                <Link to="/premium" className="flex items-center gap-2 p-2 hover:bg-secondary/20 rounded-xl transition-colors group">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary group-hover:animate-bounce" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 011 1v1h1a1 1 0 011 1v1h1a1 1 0 011 1v1h1a1 1 0 011 1v1h1a1 1 0 011 1v1h1a1 1 0 011 1v1a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1h1z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-bold text-secondary">Premium</span>
+                  <span className="badge badge-secondary badge-sm ml-auto">PRO</span>
                 </Link>
               </li>
               <div className="divider my-1 opacity-20"></div>
